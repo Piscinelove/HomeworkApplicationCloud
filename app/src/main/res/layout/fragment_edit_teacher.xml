@@ -1,0 +1,190 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.audreycelia.homeworkapp.AddTeacherFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        xmlns:fab="http://schemas.android.com/apk/res-auto">
+
+        <ImageView
+            android:id="@+id/iv_edit_teacher_teacher"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_above="@+id/tv_edit_teacher_firstname"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorLight"
+            android:gravity="bottom"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            app:srcCompat="@drawable/ic_person__24dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_edit_teacher_firstname"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/tv_edit_teacher_lastname"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/et_edit_teacher_firstname"
+            android:layout_toStartOf="@+id/et_edit_teacher_firstname"
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="@string/firstname"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/et_edit_teacher_firstname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_edit_teacher_firstname"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_toEndOf="@+id/tv_edit_teacher_lastname"
+            android:layout_toRightOf="@+id/tv_edit_teacher_lastname"
+            android:ems="10"
+            android:layout_below="@+id/iv_edit_teacher_teacher"
+            android:textColor="@color/text_color"/>
+
+        <TextView
+            android:id="@+id/tv_edit_teacher_lastname"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/tv_edit_teacher_phone"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/et_edit_teacher_lastname"
+            android:layout_toStartOf="@+id/et_edit_teacher_lastname"
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="@string/lastname"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/et_edit_teacher_lastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/et_edit_teacher_phone"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/tv_edit_teacher_lastname"
+            android:layout_toEndOf="@+id/tv_edit_teacher_phone"
+            android:layout_toRightOf="@+id/tv_edit_teacher_phone"
+            android:ems="10"
+            android:textColor="@color/text_color"/>
+
+        <TextView
+            android:id="@+id/tv_edit_teacher_phone"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/tv_edit_teacher_email"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/et_edit_teacher_phone"
+            android:layout_toStartOf="@+id/et_edit_teacher_phone"
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="@string/phone"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/et_edit_teacher_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_edit_teacher_email"
+            android:layout_alignTop="@+id/tv_edit_teacher_phone"
+            android:layout_toEndOf="@+id/tv_edit_teacher_email"
+            android:layout_toRightOf="@+id/tv_edit_teacher_email"
+            android:ems="10"
+            android:inputType="phone"
+            android:textColor="@color/text_color"/>
+
+
+        <TextView
+            android:id="@+id/tv_edit_teacher_email"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/tv_add_homework_description"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="@string/email"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/et_edit_teacher_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_edit_teacher_email"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/et_edit_teacher_phone"
+            android:layout_toEndOf="@+id/tv_edit_teacher_email"
+            android:layout_toRightOf="@+id/tv_edit_teacher_email"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/text_color"/>
+
+
+        <TextView
+            android:id="@+id/tv_add_homework_description"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_above="@+id/et_edit_teacher_description"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="@string/description"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/et_edit_teacher_description"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:ems="30"
+            android:gravity="left|top"
+            android:inputType="textMultiLine"
+            android:layout_above="@+id/ib_delete_edit_teacher"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/text_color"/>
+
+
+        <ImageButton
+            android:id="@+id/ib_delete_edit_teacher"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/colorRed"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_delete"
+            android:visibility="invisible" />
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+</FrameLayout>

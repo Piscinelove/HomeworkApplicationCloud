@@ -1,0 +1,49 @@
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.audreycelia.homeworkapp.CalendarFragment"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <!-- TODO: Update blank fragment layout -->
+        <CalendarView
+            android:id="@+id/simpleCalendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:dateTextAppearance="@android:style/TextAppearance.Large"
+            android:maxDate="01/01/2019"
+            android:minDate="01/01/2016"
+            android:weekDayTextAppearance="@android:style/TextAppearance.DeviceDefault.Medium">
+
+        </CalendarView>
+
+        <ListView
+            android:id="@+id/listCoursesCalendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/search_bar_course"
+            android:nestedScrollingEnabled="true"/>
+
+        <ListView
+            android:id="@+id/listExamsCalendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/search_bar_exam"
+            android:nestedScrollingEnabled="true"/>
+
+        <ListView
+            android:id="@+id/listHomeworksCalendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/search_bar_homework" />
+
+    </LinearLayout>
+</ScrollView>

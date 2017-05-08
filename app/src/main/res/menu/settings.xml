@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item
+        android:id="@+id/action_bar_settings"
+        android:enabled="true"
+        android:icon="@drawable/ic_settings"
+        android:orderInCategory="-10"
+        android:title="settings"
+        app:showAsAction="always" >
+
+        <menu android:id="@+id/sousmenu">
+            <item android:id="@+id/french"
+                android:title="@string/french"   />
+
+            <item android:id="@+id/german"
+                android:title="@string/german"  />
+
+            <item android:id="@+id/english"
+                android:title="@string/english"  />
+        </menu>
+    </item>
+
+
+</menu>

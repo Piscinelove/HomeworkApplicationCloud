@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#00796B</color>
+    <color name="colorLight">#B2DFDB</color>
+    <color name="colorAccent">#009688</color>
+
+    //text
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#757575</color>
+
+    <color name="colorIcons">#FFFFFF</color>
+    <color name="colorDivider">#BDBDBD</color>
+
+    <color name="colorRed">#D64541</color>
+    <color name="done">#66CC99</color>
+
+
+    //couleur pour color picker
+    <color name="primary1">#D2527F</color>
+    <color name="primary2">#2574A9</color>
+    <color name="primary3">#FFA000</color>
+    <color name="primary4">#455A64</color>
+    <color name="primary5">#D64541</color>
+    <color name="primary6">#66CC99</color>
+    <color name="primary7">#674172</color>
+    <color name="primary8">#00BCD4</color>
+    <color name="primary9">#FDE3A7</color>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</resources>

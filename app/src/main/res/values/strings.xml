@@ -1,0 +1,82 @@
+<resources>
+    <string name="app_name" translatable="false">MeMinder</string>
+    <string name="title_timetable">Timetable</string>
+    <string name="title_course">Course</string>
+    <string name="title_exam">Exam</string>
+    <string name="title_homework">Homework</string>
+    <string name="title_teacher">Teacher</string>
+    <string name="title_settings">Settings</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="name">Name</string>
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
+    <string name="course">Course</string>
+    <string name="courses">Courses</string>
+    <string name="homeworks">Homeworks</string>
+    <string name="exams">Exams</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="date">Date</string>
+    <string name="day">Day</string>
+    <string name="done">Done</string>
+    <string name="todo">To do</string>
+    <string name="from">From</string>
+    <string name="until">Until</string>
+    <string name="grade">Grade</string>
+    <string name="room">Room</string>
+    <string name="description">Description</string>
+    <string name="color">Color</string>
+    <string name="choose">Choose</string>
+    <string name="colorChange">Select one color:</string>
+    <string name="search">Search</string>
+
+
+    //error message
+    <string name="wrongName">Name field cannot be empty</string>
+    <string name="overlapcourse">Your course overlaps with another course</string>
+    <string name="nullday">You need to choose a day</string>
+    <string name="nullteacher">You need to choose a teacher</string>
+    <string name="incorrecttime">Start time must before end time</string>
+    <string name="nullcourse">You need to choose a course</string>
+    <string name="nulldate">You need to choose a date</string>
+    <string name="nullfrom">From field can not be empty</string>
+    <string name="nulluntil">Until field can not be empty</string>
+    <string name="overlapexam">Your exam overlaps with another exam</string>
+    <string name="nullRoom">Room field cannot be empty</string>
+    <string name="nullFirstname">Firstname field cannot be empty</string>
+    <string name="nullLastname">Lastname field cannot be empty</string>
+    <string name="wrongPhone">Invalid phone number</string>
+    <string name="wrongEmail">Invalid email</string>
+    <string name="deleteTeacher">Warning : deleting a teacher may delete other elements related to it. Are you sure ?</string>
+    <string name="deleteCourse">Warning : deleting a course may delete other elements related to it. Are you sure ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="french">French</string>
+    <string name="german">German</string>
+    <string name="english">English</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- DAYS -->
+    <string-array name="days">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+</resources>
