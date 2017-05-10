@@ -30,6 +30,12 @@ dependencies {
     compile 'com.android.support:design:25.3.0'
     compile 'com.android.support:support-vector-drawable:25.3.0'
     compile 'com.google.code.findbugs:jsr305:2.0.1'
+    compile ('com.google.api-client:google-api-client-android:1.17.0-rc') {
+        exclude module: 'httpclient'
+    }
+    compile ('com.google.http-client:google-http-client-gson:1.17.0-rc') {
+        exclude module: 'httpclient'
+    }
     testCompile 'junit:junit:4.12'
     compile project(path: ':backend', configuration: 'android-endpoints')
 }

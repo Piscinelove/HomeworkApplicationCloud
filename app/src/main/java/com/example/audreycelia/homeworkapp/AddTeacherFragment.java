@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.audreycelia.homeworkapp.backend.teacherApi.model.Teacher;
+
 import db.DatabaseHelper;
 
 
@@ -57,8 +59,18 @@ public class AddTeacherFragment extends Fragment {
                     return  false;
 
 
+                Teacher t = new Teacher();
+                t.setFirstName(firstName.getText().toString());
+                t.setLastName(lastName.getText().toString());
+                t.setPhone(phone.getText().toString());
+                t.setEmail(email.getText().toString());
+                t.setDescription(description.getText().toString());
+
+                new TeacherAsyncTask(t).execute();
+
                 db = new DatabaseHelper(getActivity().getApplicationContext());
                 db.insertTeacher(firstName.getText().toString().substring(0,1).toUpperCase() +firstName.getText().toString().substring(1).toLowerCase(),lastName.getText().toString().substring(0,1).toUpperCase() +lastName.getText().toString().substring(1).toLowerCase(),phone.getText().toString(),email.getText().toString(),description.getText().toString());
+
 
                 fragmentManager = getActivity().getSupportFragmentManager();
                 fragment = new TeacherFragment();
