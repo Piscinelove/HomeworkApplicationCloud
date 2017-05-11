@@ -5,9 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 
 import java.util.ArrayList;
+import java.util.List;
+
+import cloud.TeacherAsyncTask;
 
 /**
  * Created by Rafael Peixoto on 22.04.2017.
@@ -26,6 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onOpen(SQLiteDatabase db) {
         super.onOpen(db);
         db.execSQL("PRAGMA foreign_keys=ON;");
+
     }
 
     @Override
@@ -44,6 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(DatabaseContract.DELETE_TABLE_TEACHERS);
         db.execSQL(DatabaseContract.DELETE_TABLE_EXAMS);
         onCreate(db);
+
 
     }
 
@@ -650,6 +656,53 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.close();
         return exam;
+    }
+
+    //CLOUD HANDLING
+
+    //MANAGE SQL DATABASE TO CLOUD : TEACHER
+    public void sqlToCloudTeacher(){
+        ArrayList<Teacher> teachers = getAllTeachers();
+
+        //LOOP IN EVERY ROW OF THE TABLE TEACHER
+        for (Teacher teacher : teachers) {
+
+            //CREATING THE TEACHER CLOUD
+            com.example.audreycelia.homeworkapp.backend.teacherApi.model.Teacher teacherCloud = new com.example.audreycelia.homeworkapp.backend.teacherApi.model.Teacher();
+            teacherCloud.setTeacherId((long)teacher.getTeacherId());
+            teacherCloud.setFirstName(teacher.getFirstName());
+            teacherCloud.setLastName(teacher.getLastName());
+            teacherCloud.setPhone(teacher.getPhone());
+            teacherCloud.setEmail(teacher.getEmail());
+            teacherCloud.setDescription(teacher.getDescription());
+
+            new TeacherAsyncTask(teacherCloud, this).execute();
+        }
+        Log.e("CLOUD","All teachers have been saved in cloud");
+    }
+
+    public void cloudToSqlTeacher(List<com.example.audreycelia.homeworkapp.backend.teacherApi.model.Teacher> teachers){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL(DatabaseContract.DELETE_TABLE_TEACHERS);
+        db.execSQL(DatabaseContract.CREATE_TABLE_TEACHERS);
+
+        for (com.example.audreycelia.homeworkapp.backend.teacherApi.model.Teacher t : teachers)
+        {
+            ContentValues values = new ContentValues();
+
+            values.put(DatabaseContract.Teachers.TEACHER_ID, t.getTeacherId() );
+            values.put(DatabaseContract.Teachers.TEACHER_FIRSTNAME, t.getFirstName() );
+            values.put(DatabaseContract.Teachers.TEACHER_LASTNAME, t.getLastName() );
+            values.put(DatabaseContract.Teachers.TEACHER_PHONE, t.getPhone() );
+            values.put(DatabaseContract.Teachers.TEACHER_EMAIL, t.getEmail() );
+            values.put(DatabaseContract.Teachers.TEACHER_DESCRIPTION, t.getDescription() );
+
+            db.insert(DatabaseContract.Teachers.TABLE_NAME,null, values);
+        }
+        db.close();
+
+        Log.e("CLOUD","ALL TEACHERS ARE RESTORED");
     }
 
 

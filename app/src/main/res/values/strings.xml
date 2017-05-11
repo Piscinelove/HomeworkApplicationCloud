@@ -53,6 +53,7 @@
     <string name="deleteCourse">Warning : deleting a course may delete other elements related to it. Are you sure ?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="syncroTeachers">No</string>
 
     <string name="french">French</string>
     <string name="german">German</string>

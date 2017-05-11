@@ -14,12 +14,16 @@ import android.view.MenuItem;
 import android.widget.CalendarView;
 import java.util.Locale;
 
+import cloud.TeacherAsyncTask;
+import db.DatabaseHelper;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView navigation;
     private Fragment fragment;
     private FragmentManager fragmentManager;
+    private DatabaseHelper db;
 
 
 
@@ -70,6 +74,12 @@ public class MainActivity extends AppCompatActivity {
         loadLastLanguage();
 
         setContentView(R.layout.activity_main);
+
+        //db = new DatabaseHelper(getApplicationContext());
+        //db.insertTeacher("TestTeacher", "TestTeacher","0786841723","rafael@gmail.com","DESRIPTION");
+        //db.sqlToCloudTeacher();
+        db = new DatabaseHelper(getApplicationContext());
+        new TeacherAsyncTask(db, this).execute();
 
 
 
