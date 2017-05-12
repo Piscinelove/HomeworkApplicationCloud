@@ -6,6 +6,7 @@ import android.util.Log;
 
 
 import com.example.audreycelia.homeworkapp.MainActivity;
+import com.example.audreycelia.homeworkapp.R;
 import com.example.audreycelia.homeworkapp.backend.teacherApi.TeacherApi;
 import com.example.audreycelia.homeworkapp.backend.teacherApi.model.Teacher;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -15,6 +16,7 @@ import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import db.DatabaseHelper;
 
@@ -22,32 +24,34 @@ import db.DatabaseHelper;
  * Created by Rafael Peixoto on 10.05.2017.
  */
 
-public class TeacherAsyncTask extends AsyncTask<Void, Void, ArrayList<Teacher>>{
+public class TeacherAsyncTask extends AsyncTask<Void, Void, List<Teacher>>{
 
     private static TeacherApi teacherApi = null;
     private static final String TAG = TeacherAsyncTask.class.getName();
     private Teacher teacher;
     private DatabaseHelper db;
 
+
     //Progress dialog
     private MainActivity mainActivity;
-    private ProgressDialog progressDialog;
 
 
     public TeacherAsyncTask(DatabaseHelper db, MainActivity mainActivity)
     {
-        this.mainActivity = mainActivity;
+
         this.db = db;
+        this.mainActivity = mainActivity;
     }
 
-    public  TeacherAsyncTask(Teacher teacher, DatabaseHelper db)
+    public  TeacherAsyncTask(Teacher teacher, DatabaseHelper db,MainActivity mainActivity)
     {
         this.teacher = teacher;
         this.db = db;
+        this.mainActivity = mainActivity;
     }
 
     @Override
-    protected ArrayList<Teacher> doInBackground(Void... params) {
+    protected List<Teacher> doInBackground(Void... params) {
 
         if(teacherApi == null)
         {
@@ -73,7 +77,7 @@ public class TeacherAsyncTask extends AsyncTask<Void, Void, ArrayList<Teacher>>{
                 Log.i(TAG, "insert employee");
             }
 
-            return new ArrayList<Teacher>(teacherApi.list().execute().getItems());
+            return teacherApi.list().execute().getItems();
 
 
 
@@ -84,7 +88,7 @@ public class TeacherAsyncTask extends AsyncTask<Void, Void, ArrayList<Teacher>>{
     }
 
     @Override
-    protected void onPostExecute(ArrayList<Teacher> teachers) {
+    protected void onPostExecute(List<Teacher> teachers) {
 
 
         if(teachers != null) {
@@ -96,19 +100,19 @@ public class TeacherAsyncTask extends AsyncTask<Void, Void, ArrayList<Teacher>>{
         }
 
         if(teachers != null) {
-            db.cloudToSqlTeacher(teachers);
+            db.cloudToSqlTeachers(teachers);
         }
 
-        progressDialog.dismiss();
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progressDialog = new ProgressDialog(mainActivity);
-        progressDialog.setMessage("Synchronising...");
-        progressDialog.setIndeterminate(false);
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        if(mainActivity != null && mainActivity.getProgressDialog() != null) {
+            mainActivity.getProgressDialog().setIndeterminate(false);
+            mainActivity.getProgressDialog().setCancelable(false);
+            mainActivity.getProgressDialog().setMessage(mainActivity.getString(R.string.syncroTeachers));
+            mainActivity.getProgressDialog().show();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.audreycelia.homeworkapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -14,6 +15,9 @@ import android.view.MenuItem;
 import android.widget.CalendarView;
 import java.util.Locale;
 
+import cloud.CourseAsyncTask;
+import cloud.ExamAsyncTask;
+import cloud.HomeworkAsyncTask;
 import cloud.TeacherAsyncTask;
 import db.DatabaseHelper;
 
@@ -24,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     private Fragment fragment;
     private FragmentManager fragmentManager;
     private DatabaseHelper db;
+
+
+    private ProgressDialog progressDialog;
 
 
 
@@ -79,7 +86,13 @@ public class MainActivity extends AppCompatActivity {
         //db.insertTeacher("TestTeacher", "TestTeacher","0786841723","rafael@gmail.com","DESRIPTION");
         //db.sqlToCloudTeacher();
         db = new DatabaseHelper(getApplicationContext());
+        progressDialog = new ProgressDialog(this);
         new TeacherAsyncTask(db, this).execute();
+        new CourseAsyncTask(db, this).execute();
+        new HomeworkAsyncTask(db, this).execute();
+        new ExamAsyncTask(db, this).execute();
+
+
 
 
 
@@ -183,6 +196,14 @@ public class MainActivity extends AppCompatActivity {
                 languageToLoad = "en";
                 changeLanguage(languageToLoad);
                 return true;
+            case R.id.cloud:
+                progressDialog = new ProgressDialog(this);
+                db.sqlToCloudTeacher(this);
+                db.sqlToCloudCourse(this);
+                db.sqlToCloudHomework(this);
+                db.sqlToCloudExam(this);
+                return true;
+
 
         }
         return false;
@@ -199,6 +220,15 @@ public class MainActivity extends AppCompatActivity {
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
     }
+
+    public ProgressDialog getProgressDialog() {
+        return progressDialog;
+    }
+
+    public void setProgressDialog(ProgressDialog progressDialog) {
+        this.progressDialog = progressDialog;
+    }
+
 
 }
 

@@ -5,7 +5,6 @@
     <string name="title_exam">Exam</string>
     <string name="title_homework">Homework</string>
     <string name="title_teacher">Teacher</string>
-    <string name="title_settings">Settings</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -21,7 +20,6 @@
     <string name="date">Date</string>
     <string name="day">Day</string>
     <string name="done">Done</string>
-    <string name="todo">To do</string>
     <string name="from">From</string>
     <string name="until">Until</string>
     <string name="grade">Grade</string>
@@ -53,7 +51,8 @@
     <string name="deleteCourse">Warning : deleting a course may delete other elements related to it. Are you sure ?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="syncroTeachers">No</string>
+    <string name="syncroTeachers">Synchronising teachers... </string>
+    <string name="cloud">Synchronising with cloud</string>
 
     <string name="french">French</string>
     <string name="german">German</string>
@@ -80,4 +79,5 @@
     <string name="friday">Friday</string>
     <string name="saturday">Saturday</string>
     <string name="sunday">Sunday</string>
+
 </resources>

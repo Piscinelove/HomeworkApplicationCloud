@@ -28,13 +28,11 @@
     <string name="tuesday">Mardi</string>
     <string name="wednesday">Mercredi</string>
     <string name="colorChange">Choisir une couleur:</string>
-    <string name="todo">À faire</string>
     <string name="courses">Cours</string>
     <string name="english">Anglais</string>
     <string name="exams">Examens</string>
     <string name="french">Français</string>
     <string name="german">Allemand</string>
-    <string name="title_settings">Paramètre</string>
     <string name="choose">Choisir</string>
     <string name="nullFirstname">Le champs prénom ne peut pas être vide</string>
     <string name="nullLastname">Le champs nom ne peut pas être vide</string>

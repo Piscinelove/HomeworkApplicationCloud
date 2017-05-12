@@ -6,11 +6,8 @@
     <color name="colorAccent">#009688</color>
 
     //text
-    <color name="colorPrimaryText">#212121</color>
-    <color name="colorSecondaryText">#757575</color>
 
     <color name="colorIcons">#FFFFFF</color>
-    <color name="colorDivider">#BDBDBD</color>
 
     <color name="colorRed">#D64541</color>
     <color name="done">#66CC99</color>
@@ -27,16 +24,7 @@
     <color name="primary8">#00BCD4</color>
     <color name="primary9">#FDE3A7</color>
 
-
-
-
-
-
-
-
-
-
-
+    <color name="black_overlay">#66000000</color>
 
 
 </resources>

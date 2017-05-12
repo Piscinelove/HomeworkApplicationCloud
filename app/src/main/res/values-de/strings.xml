@@ -27,13 +27,11 @@
     <string name="tuesday">Dienstag</string>
     <string name="wednesday">Mittwoch</string>
     <string name="colorChange">Wählen eine Farbe:</string>
-    <string name="todo">Unerledigt</string>
     <string name="courses">Kürse</string>
     <string name="english">Englisch</string>
     <string name="exams">Prüfungs</string>
     <string name="french">Französisch</string>
     <string name="german">German</string>
-    <string name="title_settings">Einstellungen</string>
     <string name="choose">Wählen</string>
     <string name="nullFirstname">Das Feld Vorname kann nicht leer sein</string>
     <string name="nullLastname">Das Feld Nachname kann nicht leer sein</string>
