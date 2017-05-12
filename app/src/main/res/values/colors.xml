@@ -7,7 +7,7 @@
 
     //text
 
-    <color name="colorIcons">#FFFFFF</color>
+    <color name="colorIcons">#ffffff</color>
 
     <color name="colorRed">#D64541</color>
     <color name="done">#66CC99</color>
