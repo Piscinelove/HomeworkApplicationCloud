@@ -80,29 +80,13 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        //db = new DatabaseHelper(getApplicationContext());
-        //db.insertTeacher("TestTeacher", "TestTeacher","0786841723","rafael@gmail.com","DESRIPTION");
-        //db.sqlToCloudTeacher();
         db = new DatabaseHelper(getApplicationContext());
-        //progressDialog = new ProgressDialog(this);
-        //new TeacherAsyncTask(db, this).execute();
-        //new CourseAsyncTask(db, this).execute();
-        //new HomeworkAsyncTask(db, this).execute();
-        //new ExamAsyncTask(db, this).execute();
-
-
-
-
-
-
 
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
 
         navigation.inflateMenu(R.menu.navigation);
 
         navigation.getMenu().getItem(0).setChecked(true);
-
-
 
         fragmentManager = getSupportFragmentManager();
 
@@ -200,6 +184,14 @@ public class MainActivity extends AppCompatActivity {
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.replace(R.id.main_container, fragment).commit();
                 transaction.addToBackStack(null);
+                return true;
+            case R.id.about: {
+                fragmentManager = getSupportFragmentManager();
+                fragment = new AboutFragment();
+                FragmentTransaction transaction2 = fragmentManager.beginTransaction();
+                transaction2.replace(R.id.main_container, fragment).commit();
+                transaction2.addToBackStack(null);
+            }
                 return true;
 
 

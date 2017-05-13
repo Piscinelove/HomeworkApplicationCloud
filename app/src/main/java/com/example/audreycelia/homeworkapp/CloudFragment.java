@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 
 import db.DatabaseHelper;
@@ -40,9 +41,14 @@ public class CloudFragment extends Fragment {
         getActivity().setTitle(R.string.cloud);
 
         Switch cloud = (Switch) rootView.findViewById(R.id.s_cloud_switch);
+        final ImageView cloudIcon = (ImageView) rootView.findViewById(R.id.iv_cloud_cloud);
 
-        if(((MainActivity)getActivity()).isCloudStorageActivated())
+        if(((MainActivity)getActivity()).isCloudStorageActivated()) {
             cloud.setChecked(true);
+            cloudIcon.setImageResource(R.drawable.ic_cloud_upload);
+        }
+        else
+            cloudIcon.setImageResource(R.drawable.ic_cloud_off);
 
 
 
@@ -52,12 +58,15 @@ public class CloudFragment extends Fragment {
                 if(isChecked)
                 {
                     ((MainActivity)getActivity()).turnCloud(true);
+                    cloudIcon.setImageResource(R.drawable.ic_cloud_upload);
                     Intent intent = new Intent(getContext(),LoadingActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
-                else
-                    ((MainActivity)getActivity()).turnCloud(false);
+                else {
+                    ((MainActivity) getActivity()).turnCloud(false);
+                    cloudIcon.setImageResource(R.drawable.ic_cloud_off);
+                }
             }
         });
 

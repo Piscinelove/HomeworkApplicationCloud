@@ -22,6 +22,8 @@
                 android:title="@string/english"  />
             <item android:id="@+id/cloud"
                 android:title="@string/cloud"  />
+            <item android:id="@+id/about"
+                android:title="@string/about"  />
         </menu>
     </item>
 

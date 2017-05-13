@@ -60,6 +60,10 @@
     <string name="on">On</string>
     <string name="off">Off</string>
     <string name="loading">Loading app</string>
+    <string name="about">About</string>
+    <string name="aboutText">This application was elaborated in the context of the Mobile and Cloud Computing course given by professor Michael Schumacher. Its goal is mobile computing through Android and cloud computing through the Google App Engine</string>
+    <string name="made">MADE WITH ♡ IN SWITZERLAND</string>
+    <string name="author">BY AUDREY MICHEL AND RAFAEL PEIXOTO</string>
 
 
     <string name="french">French</string>
