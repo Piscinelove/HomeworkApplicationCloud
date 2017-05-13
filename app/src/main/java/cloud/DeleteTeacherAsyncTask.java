@@ -1,46 +1,43 @@
 package cloud;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.audreycelia.homeworkapp.MainActivity;
-import com.example.audreycelia.homeworkapp.R;
-import com.example.audreycelia.homeworkapp.backend.courseApi.CourseApi;
-import com.example.audreycelia.homeworkapp.backend.courseApi.model.Course;
+import com.example.audreycelia.homeworkapp.backend.teacherApi.TeacherApi;
+import com.example.audreycelia.homeworkapp.backend.teacherApi.model.Teacher;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import db.DatabaseHelper;
 
 /**
  * Created by Rafael Peixoto on 10.05.2017.
  */
 
-public class CourseAsyncTask extends AsyncTask<Void, Void, Course>{
+public class DeleteTeacherAsyncTask extends AsyncTask<Void, Void, Integer>{
 
-    private static CourseApi courseApi = null;
-    private static final String TAG = CourseAsyncTask.class.getName();
-    private Course course;
+    private static TeacherApi teacherApi = null;
+    private static final String TAG = DeleteTeacherAsyncTask.class.getName();
 
-    public CourseAsyncTask(Course course)
+    private int teacherId;
+
+
+    public DeleteTeacherAsyncTask(int teacherId)
     {
-        this.course = course;
+        this.teacherId = teacherId;
     }
 
-    @Override
-    protected Course doInBackground(Void... params) {
 
-        if(courseApi == null)
+
+    @Override
+    protected Integer doInBackground(Void... params) {
+
+        if(teacherApi == null)
         {
             //ONLY ONCE
-            CourseApi.Builder builder = new CourseApi.Builder(AndroidHttp.newCompatibleTransport(),new AndroidJsonFactory(), null);
+            TeacherApi.Builder builder = new TeacherApi.Builder(AndroidHttp.newCompatibleTransport(),new AndroidJsonFactory(), null);
             builder.setRootUrl("https://homeworkapplicationcloud.appspot.com/_ah/api");
             builder.setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                 @Override
@@ -50,24 +47,24 @@ public class CourseAsyncTask extends AsyncTask<Void, Void, Course>{
             });
             builder.setApplicationName("MeMinder");
 
-            courseApi = builder.build();
+            teacherApi = builder.build();
         }
 
         try{
             //CALL HERE THE WISHED METHODS ON THE ENDPOINTS
-            //INSERT IN CLOUD
-            if(course != null) {
-                courseApi.insert(course).execute();
+            //DELETE IN CLOUD
+            if(teacherId != 0)
+            {
+                //DELETE IN CLOUD
+                teacherApi.remove((long)teacherId).execute();
             }
 
-            return course;
-
+            return teacherId;
 
 
         }catch (IOException e){
-            return new Course();
+            Log.e(TAG, e.toString());
+            return 0;
         }
-
-
     }
 }

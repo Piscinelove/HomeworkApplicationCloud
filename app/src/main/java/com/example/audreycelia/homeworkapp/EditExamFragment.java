@@ -3,6 +3,7 @@ package com.example.audreycelia.homeworkapp;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -203,6 +204,9 @@ public class EditExamFragment extends Fragment {
                 db.updateExam(examId,name.getText().toString(),examDate,from.getText().toString(),until.getText().toString(), Double.parseDouble(grade.getText().toString()), Integer.parseInt(room.getText().toString()),description.getText().toString(),((Course)course.getSelectedItem()).getCourseId());
 
 
+                if(((MainActivity)getActivity()).isCloudStorageActivated())
+                    db.sqlToCloudExam();
+
                 //Disable temporaiement les fields
                 editMode(false);
 
@@ -268,6 +272,8 @@ public class EditExamFragment extends Fragment {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(((MainActivity)getActivity()).isCloudStorageActivated())
+                    db.deleteFromCloudExam(examId);
                 db.deleteExam(examId);
                 deleteButton.setVisibility(View.INVISIBLE);
 
@@ -495,5 +501,11 @@ public class EditExamFragment extends Fragment {
 
         return true;
 
+    }
+
+    public boolean isCloudStorageActivated()
+    {
+        boolean isActivated = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("CLOUD", false);
+        return isActivated;
     }
 }

@@ -1,13 +1,12 @@
 package cloud;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 
+import com.example.audreycelia.homeworkapp.LoadingActivity;
 import com.example.audreycelia.homeworkapp.MainActivity;
 import com.example.audreycelia.homeworkapp.R;
-import com.example.audreycelia.homeworkapp.backend.courseApi.CourseApi;
-import com.example.audreycelia.homeworkapp.backend.courseApi.model.Course;
 import com.example.audreycelia.homeworkapp.backend.examApi.ExamApi;
 import com.example.audreycelia.homeworkapp.backend.examApi.model.Exam;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -25,19 +24,34 @@ import db.DatabaseHelper;
  * Created by Rafael Peixoto on 10.05.2017.
  */
 
-public class ExamAsyncTask extends AsyncTask<Void, Void, Exam>{
+public class ListExamsAsyncTask extends AsyncTask<Void, Void, List<Exam>>{
 
     private static ExamApi examApi = null;
-    private static final String TAG = ExamAsyncTask.class.getName();
-    private Exam exam;
+    private static final String TAG = ListExamsAsyncTask.class.getName();
+    //DATABASE HELPER
+    private DatabaseHelper db;
+    //LOADING ACTIVITY
+    private LoadingActivity loadingActivity;
+    //STATE TEXT
+    private TextView state;
 
-    public ExamAsyncTask(Exam exam)
+
+    public ListExamsAsyncTask(DatabaseHelper db, LoadingActivity loadingActivity, TextView state)
     {
-        this.exam = exam;
+
+        this.db = db;
+        this.loadingActivity = loadingActivity;
+        this.state = state;
     }
 
     @Override
-    protected Exam doInBackground(Void... params) {
+    protected void onPreExecute() {
+        //CHANGE STATE TEXT
+        state.setText(R.string.syncroExams);
+    }
+
+    @Override
+    protected List<Exam> doInBackground(Void... params) {
 
         if(examApi == null)
         {
@@ -57,20 +71,26 @@ public class ExamAsyncTask extends AsyncTask<Void, Void, Exam>{
 
         try{
             //CALL HERE THE WISHED METHODS ON THE ENDPOINTS
-            //INSERT IN CLOUD
-            if(exam != null) {
-                examApi.insert(exam).execute();
-            }
-
-
-            return exam;
+            //GET COURSES FROM CLOUD
+            return examApi.list().execute().getItems();
 
 
 
         }catch (IOException e){
             Log.e(TAG, e.toString());
-            return new Exam();
-        }
+            return new ArrayList<Exam>();
+    }
     }
 
+    @Override
+    protected void onPostExecute(List<Exam> exams) {
+
+        if(exams != null && !exams.isEmpty()) {
+            db.cloudToSqlExams(exams);
+        }
+
+        db.close();
+        loadingActivity.finishLoading();
+
+    }
 }

@@ -3,6 +3,7 @@ package com.example.audreycelia.homeworkapp;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -205,7 +206,8 @@ public class AddCourseFragment extends Fragment {
 
 
                 db.insertCourse(name.getText().toString(),day.getSelectedItem().toString(),from.getText().toString(),until.getText().toString(), colorPickerDialog.getSelectedColor(), Integer.parseInt(room.getText().toString()),description.getText().toString(),((Teacher)teacher.getSelectedItem()).getTeacherId());
-
+                if(((MainActivity)getActivity()).isCloudStorageActivated())
+                    db.sqlToCloudCourse();
                 fragmentManager = getActivity().getSupportFragmentManager();
                 fragment = new CourseFragment();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -375,6 +377,12 @@ public class AddCourseFragment extends Fragment {
 
         return true;
 
+    }
+
+    public boolean isCloudStorageActivated()
+    {
+        boolean isActivated = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("CLOUD", false);
+        return isActivated;
     }
 
 

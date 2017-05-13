@@ -1,7 +1,9 @@
 package com.example.audreycelia.homeworkapp;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -12,13 +14,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.CalendarView;
+
 import java.util.Locale;
 
-import cloud.CourseAsyncTask;
-import cloud.ExamAsyncTask;
-import cloud.HomeworkAsyncTask;
-import cloud.TeacherAsyncTask;
 import db.DatabaseHelper;
 
 
@@ -28,11 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private Fragment fragment;
     private FragmentManager fragmentManager;
     private DatabaseHelper db;
+    private SharedPreferences settings;
 
-
-    private ProgressDialog progressDialog;
-
-
+    //CLOUD ACTIVATED
+    private boolean isActivated = false;
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -77,8 +74,9 @@ public class MainActivity extends AppCompatActivity {
     //test
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        loadCloudSetting();
         loadLastLanguage();
+
 
         setContentView(R.layout.activity_main);
 
@@ -86,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
         //db.insertTeacher("TestTeacher", "TestTeacher","0786841723","rafael@gmail.com","DESRIPTION");
         //db.sqlToCloudTeacher();
         db = new DatabaseHelper(getApplicationContext());
-        progressDialog = new ProgressDialog(this);
-        new TeacherAsyncTask(db, this).execute();
-        new CourseAsyncTask(db, this).execute();
-        new HomeworkAsyncTask(db, this).execute();
-        new ExamAsyncTask(db, this).execute();
+        //progressDialog = new ProgressDialog(this);
+        //new TeacherAsyncTask(db, this).execute();
+        //new CourseAsyncTask(db, this).execute();
+        //new HomeworkAsyncTask(db, this).execute();
+        //new ExamAsyncTask(db, this).execute();
 
 
 
@@ -197,11 +195,11 @@ public class MainActivity extends AppCompatActivity {
                 changeLanguage(languageToLoad);
                 return true;
             case R.id.cloud:
-                progressDialog = new ProgressDialog(this);
-                db.sqlToCloudTeacher(this);
-                db.sqlToCloudCourse(this);
-                db.sqlToCloudHomework(this);
-                db.sqlToCloudExam(this);
+                fragmentManager = getSupportFragmentManager();
+                fragment = new CloudFragment();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.main_container, fragment).commit();
+                transaction.addToBackStack(null);
                 return true;
 
 
@@ -221,14 +219,22 @@ public class MainActivity extends AppCompatActivity {
                 getBaseContext().getResources().getDisplayMetrics());
     }
 
-    public ProgressDialog getProgressDialog() {
-        return progressDialog;
+    private void loadCloudSetting()
+    {
+        settings = getApplicationContext().getSharedPreferences("com.example.audreycelia.homeworkapp", Context.MODE_PRIVATE);
+        isActivated = settings.getBoolean("CLOUD", false);
     }
 
-    public void setProgressDialog(ProgressDialog progressDialog) {
-        this.progressDialog = progressDialog;
+    public boolean isCloudStorageActivated()
+    {
+        return isActivated;
     }
 
+    public void turnCloud(boolean value)
+    {
+        settings.edit().putBoolean("CLOUD", value).commit();
+        isActivated = value;
+    }
 
 }
 

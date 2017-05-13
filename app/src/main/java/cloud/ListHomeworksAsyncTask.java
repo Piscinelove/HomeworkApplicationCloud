@@ -1,13 +1,11 @@
 package cloud;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 
-import com.example.audreycelia.homeworkapp.MainActivity;
+import com.example.audreycelia.homeworkapp.LoadingActivity;
 import com.example.audreycelia.homeworkapp.R;
-import com.example.audreycelia.homeworkapp.backend.courseApi.CourseApi;
-import com.example.audreycelia.homeworkapp.backend.courseApi.model.Course;
 import com.example.audreycelia.homeworkapp.backend.homeworkApi.HomeworkApi;
 import com.example.audreycelia.homeworkapp.backend.homeworkApi.model.Homework;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -25,20 +23,34 @@ import db.DatabaseHelper;
  * Created by Rafael Peixoto on 10.05.2017.
  */
 
-public class HomeworkAsyncTask extends AsyncTask<Void, Void, Homework>{
+public class ListHomeworksAsyncTask extends AsyncTask<Void, Void, List<Homework>>{
 
     private static HomeworkApi homeworkApi = null;
-    private static final String TAG = HomeworkAsyncTask.class.getName();
-    private Homework homework;
+    private static final String TAG = ListHomeworksAsyncTask.class.getName();
+    //DATABASE HELPER
+    private DatabaseHelper db;
+    //LOADING ACTIVITY
+    private LoadingActivity loadingActivity;
+    //STATE TEXT
+    private TextView state;
 
-
-    public HomeworkAsyncTask(Homework homework)
+    public ListHomeworksAsyncTask(DatabaseHelper db, LoadingActivity loadingActivity, TextView state)
     {
-        this.homework = homework;
+
+        this.db = db;
+        this.loadingActivity = loadingActivity;
+        this.state = state;
     }
 
     @Override
-    protected Homework doInBackground(Void... params) {
+    protected void onPreExecute() {
+        //CHANGE STATE TEXT
+        state.setText(R.string.syncroHomeworks);
+    }
+
+
+    @Override
+    protected List<Homework> doInBackground(Void... params) {
 
         if(homeworkApi == null)
         {
@@ -58,19 +70,37 @@ public class HomeworkAsyncTask extends AsyncTask<Void, Void, Homework>{
 
         try{
             //CALL HERE THE WISHED METHODS ON THE ENDPOINTS
-            //INSERT IN CLOUD
-            if(homework != null) {
-                homeworkApi.insert(homework).execute();
-            }
-
-            return homework;
+            //GET COURSES FROM CLOUD
+            return homeworkApi.list().execute().getItems();
 
 
 
         }catch (IOException e){
             Log.e(TAG, e.toString());
-            return new Homework();
+            return new ArrayList<Homework>();
         }
+    }
+
+    @Override
+    protected void onPostExecute(List<Homework> homeworks) {
+
+        if(homeworks != null && !homeworks.isEmpty()) {
+            db.cloudToSqlHomeworks(homeworks);
+        }
+
+        //THREAD SLEEP
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        new ListExamsAsyncTask(db,loadingActivity,state).execute();
+
+
+
+
+
     }
 
 }

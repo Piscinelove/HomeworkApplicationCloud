@@ -1,13 +1,8 @@
 package cloud;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.audreycelia.homeworkapp.MainActivity;
-import com.example.audreycelia.homeworkapp.R;
-import com.example.audreycelia.homeworkapp.backend.courseApi.CourseApi;
-import com.example.audreycelia.homeworkapp.backend.courseApi.model.Course;
 import com.example.audreycelia.homeworkapp.backend.examApi.ExamApi;
 import com.example.audreycelia.homeworkapp.backend.examApi.model.Exam;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -16,28 +11,24 @@ import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import db.DatabaseHelper;
 
 /**
  * Created by Rafael Peixoto on 10.05.2017.
  */
 
-public class ExamAsyncTask extends AsyncTask<Void, Void, Exam>{
+public class DeleteExamAsyncTask extends AsyncTask<Void, Void, Integer>{
 
     private static ExamApi examApi = null;
-    private static final String TAG = ExamAsyncTask.class.getName();
-    private Exam exam;
+    private static final String TAG = DeleteExamAsyncTask.class.getName();
+    private int examId;
 
-    public ExamAsyncTask(Exam exam)
+    public DeleteExamAsyncTask(int examId)
     {
-        this.exam = exam;
+        this.examId = examId;
     }
 
     @Override
-    protected Exam doInBackground(Void... params) {
+    protected Integer doInBackground(Void... params) {
 
         if(examApi == null)
         {
@@ -58,18 +49,17 @@ public class ExamAsyncTask extends AsyncTask<Void, Void, Exam>{
         try{
             //CALL HERE THE WISHED METHODS ON THE ENDPOINTS
             //INSERT IN CLOUD
-            if(exam != null) {
-                examApi.insert(exam).execute();
+            if(examId != 0) {
+                examApi.remove((long)examId).execute();
             }
 
 
-            return exam;
+            return examId;
 
 
 
         }catch (IOException e){
-            Log.e(TAG, e.toString());
-            return new Exam();
+            return 0;
         }
     }
 

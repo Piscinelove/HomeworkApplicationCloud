@@ -68,7 +68,7 @@ public class Homework {
             dateTime = dateFormatin.parse(deadline);
             deadline = dateFormatout.format(dateTime);
         } catch (ParseException e) {
-            e.printStackTrace();
+
         }
         this.deadline = deadline;
     }

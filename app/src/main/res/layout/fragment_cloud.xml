@@ -1,0 +1,43 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.audreycelia.homeworkapp.CloudFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/iv_cloud_cloud"
+        android:layout_width="match_parent"
+        android:layout_height="255dp"
+        app:srcCompat="@drawable/ic_cloud_upload" />
+
+        <TextView
+            android:id="@+id/tv_cloud_activation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cloudActivation"
+            android:layout_below="@id/iv_cloud_cloud"
+            android:textSize="18dp"
+            android:layout_marginBottom="30dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"/>
+
+    <Switch
+        android:id="@+id/s_cloud_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_cloud_activation"
+        android:layout_centerHorizontal="true"
+        android:textOn="@string/on"
+        android:textOff="@string/off"
+        android:textSize="18dp"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

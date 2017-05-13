@@ -63,7 +63,7 @@ public class Exam {
             dateTime = dateFormatin.parse(date);
             date = dateFormatout.format(dateTime);
         } catch (ParseException e) {
-            e.printStackTrace();
+
         }
         this.date = date;
     }

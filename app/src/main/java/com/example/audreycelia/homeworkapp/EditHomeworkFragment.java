@@ -2,6 +2,7 @@ package com.example.audreycelia.homeworkapp;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -153,6 +154,9 @@ public class EditHomeworkFragment extends Fragment {
 
                 db.updateHomework(homeworkId,name.getText().toString(),examDate,checked,description.getText().toString(),((Course)course.getSelectedItem()).getCourseId());
 
+                if(((MainActivity)getActivity()).isCloudStorageActivated())
+                    db.sqlToCloudHomework();
+
                 //Disable temporaiement les fields
                 editMode(false);
 
@@ -214,6 +218,8 @@ public class EditHomeworkFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                        if(((MainActivity)getActivity()).isCloudStorageActivated())
+                            db.deleteFromCloudHomework(homeworkId);
                         db.deleteHomework(homeworkId);
                         deleteButton.setVisibility(View.INVISIBLE);
 
@@ -302,6 +308,12 @@ public class EditHomeworkFragment extends Fragment {
         }
 
         return  examDate;
+    }
+
+    public boolean isCloudStorageActivated()
+    {
+        boolean isActivated = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("CLOUD", false);
+        return isActivated;
     }
 
 

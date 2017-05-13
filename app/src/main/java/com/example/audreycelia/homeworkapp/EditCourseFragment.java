@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -213,6 +214,8 @@ public class EditCourseFragment extends Fragment {
                 int color = ((ColorDrawable)colorButton.getBackground()).getColor();
                 db.updateCourse(courseId, name.getText().toString(),day.getSelectedItem().toString(),from.getText().toString(),until.getText().toString(), color, Integer.parseInt(room.getText().toString()),description.getText().toString(),((Teacher)teacher.getSelectedItem()).getTeacherId());
 
+                if(((MainActivity)getActivity()).isCloudStorageActivated())
+                    db.sqlToCloudCourse();
                 //Disable temporaiement les fields
                 editMode(false);
 
@@ -294,6 +297,8 @@ public class EditCourseFragment extends Fragment {
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // continue with delete
+                                if(((MainActivity)getActivity()).isCloudStorageActivated())
+                                    db.deleteFromCloudCourse(courseId);
                                 db.deleteCourse(courseId);
                                 deleteButton.setVisibility(View.INVISIBLE);
 
@@ -494,5 +499,11 @@ public class EditCourseFragment extends Fragment {
 
         return true;
 
+    }
+
+    public boolean isCloudStorageActivated()
+    {
+        boolean isActivated = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("CLOUD", false);
+        return isActivated;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.audreycelia.homeworkapp;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,7 +17,6 @@ import android.widget.EditText;
 
 import com.example.audreycelia.homeworkapp.backend.teacherApi.model.Teacher;
 
-import cloud.TeacherAsyncTask;
 import db.DatabaseHelper;
 
 
@@ -70,6 +70,9 @@ public class AddTeacherFragment extends Fragment {
 
                 db = new DatabaseHelper(getActivity().getApplicationContext());
                 db.insertTeacher(firstName.getText().toString().substring(0,1).toUpperCase() +firstName.getText().toString().substring(1).toLowerCase(),lastName.getText().toString().substring(0,1).toUpperCase() +lastName.getText().toString().substring(1).toLowerCase(),phone.getText().toString(),email.getText().toString(),description.getText().toString());
+
+                if(((MainActivity)getActivity()).isCloudStorageActivated())
+                    db.sqlToCloudTeacher();
 
 
                 fragmentManager = getActivity().getSupportFragmentManager();
@@ -142,6 +145,12 @@ public class AddTeacherFragment extends Fragment {
 
         return true;
 
+    }
+
+    public boolean isCloudStorageActivated()
+    {
+        boolean isActivated = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("CLOUD", false);
+        return isActivated;
     }
 
 }

@@ -3,6 +3,7 @@ package com.example.audreycelia.homeworkapp;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -102,6 +103,8 @@ public class EditTeacherFragment extends Fragment {
                 db = new DatabaseHelper(getActivity().getApplicationContext());
                 db.updateTeacher(teacherId,firstName.getText().toString().substring(0,1).toUpperCase() +firstName.getText().toString().substring(1).toLowerCase(),lastName.getText().toString().substring(0,1).toUpperCase() +lastName.getText().toString().substring(1).toLowerCase(),phone.getText().toString(),email.getText().toString(),description.getText().toString());
 
+                if(((MainActivity)getActivity()).isCloudStorageActivated())
+                    db.sqlToCloudTeacher();
                 deleteButton.setVisibility(View.INVISIBLE);
 
                 ///Disable temporaiement les fields
@@ -161,6 +164,8 @@ public class EditTeacherFragment extends Fragment {
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // continue with delete
+                                if(((MainActivity)getActivity()).isCloudStorageActivated())
+                                    db.deleteFromCloudTeacher(teacherId);
                                 db.deleteTeacher(teacherId);
                                 deleteButton.setVisibility(View.INVISIBLE);
 
@@ -248,6 +253,5 @@ public class EditTeacherFragment extends Fragment {
         return true;
 
     }
-
 
 }

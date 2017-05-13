@@ -51,8 +51,16 @@
     <string name="deleteCourse">Warning : deleting a course may delete other elements related to it. Are you sure ?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="cloud">Cloud Settings</string>
     <string name="syncroTeachers">Synchronising teachers... </string>
-    <string name="cloud">Synchronising with cloud</string>
+    <string name="syncroCourses">Synchronising courses... </string>
+    <string name="syncroHomeworks">Synchronising homeworks... </string>
+    <string name="syncroExams">Synchronising exams... </string>
+    <string name="cloudActivation">Activating cloud storage will store the data of MeMinder app into the cloud. An internet connection is needed in order to perform cloud synchronisation</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="loading">Loading app</string>
+
 
     <string name="french">French</string>
     <string name="german">German</string>
@@ -80,5 +88,8 @@
     <string name="saturday">Saturday</string>
     <string name="sunday">Sunday</string>
     <string name="title_activity_loading">LoadingActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
