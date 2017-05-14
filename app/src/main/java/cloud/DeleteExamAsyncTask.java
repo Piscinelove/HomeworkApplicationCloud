@@ -14,7 +14,9 @@ import java.io.IOException;
  * Created by Rafael Peixoto on 10.05.2017.
  */
 
+
 public class DeleteExamAsyncTask extends AsyncTask<Void, Void, Integer>{
+
 
     private static ExamApi examApi = null;
     private static final String TAG = DeleteExamAsyncTask.class.getName();
@@ -24,6 +26,7 @@ public class DeleteExamAsyncTask extends AsyncTask<Void, Void, Integer>{
     {
         this.examId = examId;
     }
+
 
     @Override
     protected Integer doInBackground(Void... params) {
