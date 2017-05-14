@@ -62,7 +62,7 @@
     <string name="loading">Loading app</string>
     <string name="about">About</string>
     <string name="aboutText">This application was elaborated in the context of the Mobile and Cloud Computing course given by professor Michael Schumacher. Its goal is mobile computing through Android and cloud computing through the Google App Engine</string>
-    <string name="made">MADE WITH ♡ IN SWITZERLAND</string>
+    <string name="made" translatable="false">MADE WITH ♡ IN SWITZERLAND</string>
     <string name="author">BY AUDREY MICHEL AND RAFAEL PEIXOTO</string>
 
 
@@ -91,9 +91,9 @@
     <string name="friday">Friday</string>
     <string name="saturday">Saturday</string>
     <string name="sunday">Sunday</string>
-    <string name="title_activity_loading">LoadingActivity</string>
+    <string name="title_activity_loading" translatable="false">LoadingActivity</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 
 </resources>

@@ -1,11 +1,6 @@
 package cloud;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.util.Log;
-
-import com.example.audreycelia.homeworkapp.MainActivity;
-import com.example.audreycelia.homeworkapp.R;
 import com.example.audreycelia.homeworkapp.backend.courseApi.CourseApi;
 import com.example.audreycelia.homeworkapp.backend.courseApi.model.Course;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -14,10 +9,6 @@ import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import db.DatabaseHelper;
 
 /**
  * Created by Rafael Peixoto on 10.05.2017.

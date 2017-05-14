@@ -21,6 +21,7 @@ import db.DatabaseHelper;
 
 public class CloudFragment extends Fragment {
 
+    private DatabaseHelper db;
     private Menu menu;
 
     @Override
@@ -58,7 +59,15 @@ public class CloudFragment extends Fragment {
                 if(isChecked)
                 {
                     ((MainActivity)getActivity()).turnCloud(true);
+
+                    //SAVE ALL CHANGES TO CLOUD
+                    db = new DatabaseHelper(getContext());
+                    db.sqlToCloudTeacher();
+                    db.sqlToCloudCourse();
+                    db.sqlToCloudHomework();
+                    db.sqlToCloudExam();
                     cloudIcon.setImageResource(R.drawable.ic_cloud_upload);
+
                     Intent intent = new Intent(getContext(),LoadingActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

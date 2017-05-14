@@ -55,4 +55,16 @@
     <string name="day">Tag</string>
     <string name="no">Nein</string>
     <string name="yes">Ja</string>
+    <string name="about">Über</string>
+    <string name="aboutText">Diese Anwendung wurde im Rahmen des Mobile und Cloud Computing Kurses von Professor Michael Schumacher erarbeitet. Sein Ziel ist das mobile Computing über Android und Cloud Computing über die Google App Engine</string>
+    <string name="author">BEI AUDREY MICHEL UND RAFAEL PEIXOTO</string>
+    <string name="cloud">Cloud Einstellungen</string>
+    <string name="cloudActivation">\" Die Aktivierung von Cloud-Speicher wird die Daten von MeMinder App in die Cloud speichern. Eine Internetverbindung wird benötigt, um die Cloud-Synchronisation durchzuführen</string>
+    <string name="loading">Bewerbung laden</string>
+    <string name="on">Auf</string>
+    <string name="off">Aus</string>
+    <string name="syncroCourses">Kurse synchronisieren...</string>
+    <string name="syncroExams">Prüfungen synchronisieren</string>
+    <string name="syncroHomeworks">Hausaufgaben synchronisierung...</string>
+    <string name="syncroTeachers">Lehrern synchronisieren...</string>
 </resources>

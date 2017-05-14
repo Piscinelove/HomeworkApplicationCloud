@@ -151,8 +151,8 @@ public class MainActivity extends AppCompatActivity {
         config.locale= locale;
         //noinspection deprecation
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("LANGUAGE", toLoad).commit();
-        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+        settings.edit().putString("LANGUAGE", toLoad).commit();
+        Intent intent = new Intent(MainActivity.this, LoadingActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
@@ -200,15 +200,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadLastLanguage() {
-        String language = PreferenceManager.getDefaultSharedPreferences(this).getString("LANGUAGE", "en");
+        String language = settings.getString("LANGUAGE","en");
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         //noinspection deprecation
         config.locale = locale;
         //noinspection deprecation
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
 
     private void loadCloudSetting()

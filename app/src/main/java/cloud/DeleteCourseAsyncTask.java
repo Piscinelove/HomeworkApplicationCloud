@@ -3,7 +3,6 @@ package cloud;
 import android.os.AsyncTask;
 
 import com.example.audreycelia.homeworkapp.backend.courseApi.CourseApi;
-import com.example.audreycelia.homeworkapp.backend.courseApi.model.Course;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;

@@ -55,4 +55,16 @@
     <string name="deleteTeacher">Attention : supprimer un prof peut aussi supprimer d\'autres éléments liés à celui-ci. Etes-vous sûr ?</string>
     <string name="no">Non</string>
     <string name="yes">Oui</string>
+    <string name="about">À propos</string>
+    <string name="aboutText">Cette application a été élaborée dans le cadre du cours de Développement Mobile et Cloud donné par le professeur Michael Schumacher. Son objectif est le développement mobile via Android ainsi que le cloud computing via Google App Engine</string>
+    <string name="author">PAR AUDREY MICHEL ET RAFAEL PEIXOTO</string>
+    <string name="cloud">Paramètres Cloud</string>
+    <string name="cloudActivation">L\'activation du stockage cloud stockera les données de l\'application MeMinder dans le cloud. Une connexion Internet est nécessaire pour effectuer la synchronisation du cloud</string>
+    <string name="loading">Chargement de l\'application</string>
+    <string name="on">Oui</string>
+    <string name="off">Non</string>
+    <string name="syncroCourses">Synchronisation des cours...</string>
+    <string name="syncroExams">Synchronisation des examuns...</string>
+    <string name="syncroHomeworks">Synchronisation des devoirs...</string>
+    <string name="syncroTeachers">Synchronisation des professeurs...</string>
 </resources>
